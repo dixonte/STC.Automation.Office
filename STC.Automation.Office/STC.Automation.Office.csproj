@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B58BEA28-500F-4075-A8AE-29A6075CBBAF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STC.Automation.Office</RootNamespace>
+    <AssemblyName>STC.Automation.Office</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\STC.Automation.Office.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\STC.Automation.Office.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\STC.Automation.Office.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\STC.Automation.Office.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Access\Application.cs" />
+    <Compile Include="ADODB\Enums\DataType.cs" />
+    <Compile Include="ADODB\Enums\FieldAttribute.cs" />
+    <Compile Include="ADODB\Field.cs" />
+    <Compile Include="ADODB\Fields.cs" />
+    <Compile Include="ADODB\Recordset.cs" />
+    <Compile Include="Attributes\WrapsCOMAttribute.cs" />
+    <Compile Include="Clipboard\ClipboardHelper.cs" />
+    <Compile Include="Clipboard\ClipData.cs" />
+    <Compile Include="Clipboard\Win32ClipboardAPI.cs" />
+    <Compile Include="Clipboard\Win32MemoryAPI.cs" />
+    <Compile Include="Common\ComArguments.cs" />
+    <Compile Include="Common\OfficeApplication.cs" />
+    <Compile Include="Core\CommandBar.cs" />
+    <Compile Include="Core\CommandBars.cs" />
+    <Compile Include="Common\ComEventSinkWrapper.cs" />
+    <Compile Include="Common\ComWrapper.cs" />
+    <Compile Include="Common\ComIEnumeratorWrapper.cs" />
+    <Compile Include="Core\CommandBarControls.cs" />
+    <Compile Include="Core\CommandBarControl.cs" />
+    <Compile Include="Core\CommandBarPopup.cs" />
+    <Compile Include="Core\CommandBarButton.cs" />
+    <Compile Include="Core\CommandBarComboBox.cs" />
+    <Compile Include="Core\Enums\HyperlinkType.cs" />
+    <Compile Include="Core\Enums\TriState.cs" />
+    <Compile Include="Excel\Application.cs" />
+    <Compile Include="Excel\Axes.cs" />
+    <Compile Include="Excel\Axis.cs" />
+    <Compile Include="Excel\AxisTitle.cs" />
+    <Compile Include="Excel\Borders.cs" />
+    <Compile Include="Excel\Border.cs" />
+    <Compile Include="Excel\Chart.cs" />
+    <Compile Include="Excel\ChartArea.cs" />
+    <Compile Include="Excel\ChartObject.cs" />
+    <Compile Include="Excel\ChartObjects.cs" />
+    <Compile Include="Excel\ChartTitle.cs" />
+    <Compile Include="Excel\Comment.cs" />
+    <Compile Include="Excel\AutoFilter.cs" />
+    <Compile Include="Excel\Enums\AutoFilterOperator.cs" />
+    <Compile Include="Excel\Enums\Pattern.cs" />
+    <Compile Include="Excel\Enums\SortOrientation.cs" />
+    <Compile Include="Excel\Enums\SortDataOption.cs" />
+    <Compile Include="Excel\Enums\SortOn.cs" />
+    <Compile Include="Excel\SortFields.cs" />
+    <Compile Include="Excel\Sort.cs" />
+    <Compile Include="Excel\Hyperlink.cs" />
+    <Compile Include="Excel\Hyperlinks.cs" />
+    <Compile Include="Excel\Sheet.cs" />
+    <Compile Include="Excel\Enums\AxisType.cs" />
+    <Compile Include="Excel\Enums\AxisGroup.cs" />
+    <Compile Include="Excel\Enums\SheetType.cs" />
+    <Compile Include="Excel\Enums\XLReferenceStyle.cs" />
+    <Compile Include="Excel\Enums\LegendPosition.cs" />
+    <Compile Include="Excel\Enums\VAlign.cs" />
+    <Compile Include="Excel\Legend.cs" />
+    <Compile Include="Excel\Enums\BordersIndex.cs" />
+    <Compile Include="Excel\Enums\BorderWeight.cs" />
+    <Compile Include="Excel\Enums\ChartType.cs" />
+    <Compile Include="Excel\Enums\ColorIndex.cs" />
+    <Compile Include="Excel\Enums\DeleteShiftDirection.cs" />
+    <Compile Include="Excel\Enums\HAlign.cs" />
+    <Compile Include="Excel\Enums\LineStyle.cs" />
+    <Compile Include="Excel\Enums\MarkerStyle.cs" />
+    <Compile Include="Excel\Enums\PageBreak.cs" />
+    <Compile Include="Excel\Enums\PageOrientation.cs" />
+    <Compile Include="Excel\Enums\RowCol.cs" />
+    <Compile Include="Excel\Enums\SortType.cs" />
+    <Compile Include="Excel\Enums\SortOrder.cs" />
+    <Compile Include="Excel\Enums\YesNoGuess.cs" />
+    <Compile Include="Excel\Font.cs" />
+    <Compile Include="Excel\Interior.cs" />
+    <Compile Include="Excel\PageSetup.cs" />
+    <Compile Include="Excel\PlotArea.cs" />
+    <Compile Include="Excel\Series.cs" />
+    <Compile Include="Excel\SeriesCollection.cs" />
+    <Compile Include="Excel\Sheets.cs" />
+    <Compile Include="Excel\Events\IAppEvents.cs" />
+    <Compile Include="Excel\Events\AppEvents_Sink.cs" />
+    <Compile Include="Excel\Shape.cs" />
+    <Compile Include="Excel\Shapes.cs" />
+    <Compile Include="Excel\Picture.cs" />
+    <Compile Include="Excel\Enums\FileFormat.cs" />
+    <Compile Include="Excel\Enums\SaveAsAccessMode.cs" />
+    <Compile Include="Excel\Pictures.cs" />
+    <Compile Include="Excel\Range.cs" />
+    <Compile Include="Excel\TickLabels.cs" />
+    <Compile Include="Excel\Utilities\Columns.cs" />
+    <Compile Include="Excel\Utilities\Ranges.cs" />
+    <Compile Include="Excel\Window.cs" />
+    <Compile Include="Excel\Workbook.cs" />
+    <Compile Include="Excel\Workbooks.cs" />
+    <Compile Include="Excel\Worksheet.cs" />
+    <Compile Include="Interfaces\IDispatch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Session.cs" />
+    <Compile Include="Word\Application.cs" />
+    <Compile Include="Word\Bookmark.cs" />
+    <Compile Include="Word\Bookmarks.cs" />
+    <Compile Include="Word\Cells.cs" />
+    <Compile Include="Word\Columns.cs" />
+    <Compile Include="Word\ContentControls.cs" />
+    <Compile Include="Word\ContentControl.cs" />
+    <Compile Include="Word\Enums\CollapseDirection.cs" />
+    <Compile Include="Word\Enums\ExportRange.cs" />
+    <Compile Include="Word\Enums\ExportCreateBookmarks.cs" />
+    <Compile Include="Word\Enums\ExportItem.cs" />
+    <Compile Include="Word\Enums\ExportFormat.cs" />
+    <Compile Include="Word\Enums\ExportOptimizeFor.cs" />
+    <Compile Include="Word\InlineShape.cs" />
+    <Compile Include="Word\InlineShapes.cs" />
+    <Compile Include="Word\Enums\PrintOutItem.cs" />
+    <Compile Include="Word\Enums\PrintOutPages.cs" />
+    <Compile Include="Word\Enums\PrintOutRange.cs" />
+    <Compile Include="Word\Enums\Statistic.cs" />
+    <Compile Include="Word\Rows.cs" />
+    <Compile Include="Word\Enums\BreakType.cs" />
+    <Compile Include="Word\Enums\Constants.cs" />
+    <Compile Include="Word\Enums\FieldType.cs" />
+    <Compile Include="Word\Enums\MovementType.cs" />
+    <Compile Include="Word\Enums\ParagraphAlignment.cs" />
+    <Compile Include="Word\Enums\Replace.cs" />
+    <Compile Include="Word\Enums\Units.cs" />
+    <Compile Include="Word\Enums\WindowState.cs" />
+    <Compile Include="Word\Field.cs" />
+    <Compile Include="Word\Fields.cs" />
+    <Compile Include="Word\Find.cs" />
+    <Compile Include="Word\Font.cs" />
+    <Compile Include="Word\FormField.cs" />
+    <Compile Include="Word\FormFields.cs" />
+    <Compile Include="Word\HeaderFooter.cs" />
+    <Compile Include="Word\HeadersFooters.cs" />
+    <Compile Include="Word\ParagraphFormat.cs" />
+    <Compile Include="Word\Range.cs" />
+    <Compile Include="Word\Replacement.cs" />
+    <Compile Include="Word\Section.cs" />
+    <Compile Include="Word\Sections.cs" />
+    <Compile Include="Word\Document.cs" />
+    <Compile Include="Word\Enums\SaveFormat.cs" />
+    <Compile Include="Word\Selection.cs" />
+    <Compile Include="Word\Window.cs" />
+    <Compile Include="Word\Documents.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
