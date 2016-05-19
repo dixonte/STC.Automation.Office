@@ -16,6 +16,21 @@ namespace STC.Automation.Office.Outlook
             : base(explorerObj)
         {
         }
+        
+        /// <summary>
+        /// Returns or sets a Folder object that represents the current folder displayed in the explorer. Read/write.  This object must be disposed manually.
+        /// </summary>
+        public Folder CurrentFolder
+        {
+            get
+            {
+                return new Folder(InternalObject.GetType().InvokeMember("CurrentFolder", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+            }
+            set
+            {
+                InternalObject.GetType().InvokeMember("CurrentFolder", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value.InternalObject });
+            }
+        }
 
 
         /// <summary>

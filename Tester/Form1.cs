@@ -732,28 +732,54 @@ namespace Tester
 
             if (apps.Count > 0)
             {
-                var outlook = apps[0];
-                MessageBox.Show(outlook.Version.ToString());
-
-                using (var explorer = outlook.ActiveExplorer)
-                {
-                    if (explorer != null)
-                        explorer.Activate();
-                    else
-                    {
-                        using (var myNameSpace = outlook.GetNameSpace("MAPI"))
-                        {
-                            using (var folder = myNameSpace.GetDefaultFolder(STC.Automation.Office.Outlook.Enums.DefaultFolders.Outbox))
-                                folder.Display();
-                        }
-                    }
-                }
-                
-                using (var msg = (STC.Automation.Office.Outlook.MailItem)outlook.CreateItem(STC.Automation.Office.Outlook.Enums.ItemType.MailItem))
-                    msg.Display();
-
                 foreach (var app in apps)
                     app.Dispose();
+
+                using (var outlook = STC.Automation.Office.Outlook.Application.GetOrCreateApplication())
+                {
+                    MessageBox.Show(outlook.Version.ToString());
+
+                    using (var explorer = outlook.ActiveExplorer)
+                    {
+                        if (explorer != null)
+                        {
+                            explorer.Activate();
+                            //using (var cur = explorer.CurrentFolder)
+                            //    cur.Display();
+                            using (var myNameSpace = outlook.GetNameSpace("MAPI"))
+                            {
+                                using (var folder = myNameSpace.GetDefaultFolder(STC.Automation.Office.Outlook.Enums.DefaultFolders.Outbox))
+                                    explorer.CurrentFolder = folder;
+                            }
+                        }
+                        else
+                        {
+                            using (var myNameSpace = outlook.GetNameSpace("MAPI"))
+                            {
+                                using (var folder = myNameSpace.GetDefaultFolder(STC.Automation.Office.Outlook.Enums.DefaultFolders.Outbox))
+                                    folder.Display();
+                            }
+                        }
+                    }
+
+                    //outlook.Quit();
+
+                    using (var msg = (STC.Automation.Office.Outlook.MailItem)outlook.CreateItem(STC.Automation.Office.Outlook.Enums.ItemType.MailItem))
+                    {
+                        using (var recipient = msg.Recipients.Add("sattenborrow@datalive.com.au"))
+                            recipient.Type = (long)STC.Automation.Office.Outlook.Enums.MailRecipientType.To;
+                        using (var recipient = msg.Recipients.Add("stuarta0@gmail.com"))
+                            recipient.Type = (long)STC.Automation.Office.Outlook.Enums.MailRecipientType.CC;
+                        msg.Subject = "This is the subject";
+                        msg.Body = "This is the body of the email.";
+                        msg.Importance = STC.Automation.Office.Outlook.Enums.Importance.High;
+                        using (var attachment = msg.Attachments.Add(@"C:\datalive\Program.cs")) ;
+                        msg.Recipients.ResolveAll();
+                        msg.Display();
+                        //msg.Save();
+                        //msg.Send();
+                    }
+                }
             }
         }
 

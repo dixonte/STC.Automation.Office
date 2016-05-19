@@ -82,6 +82,26 @@ namespace STC.Automation.Office.Outlook
             return Application.FromROT<Application>();
         }
 
+        /// <summary>
+        /// Gets the current running instance of Outlook or creates a new instance. This object must be disposed.
+        /// </summary>
+        /// <returns></returns>
+        public static Application GetOrCreateApplication()
+        {
+            var apps = GetRunningApplications();
+            if (apps.Count == 0)
+                return new Application();
+            else
+            {
+                var outlook = apps[0];
+
+                // dispose any remaining instances (there shouldn't be any instances)
+                for (int i = 1; i < apps.Count; i++)
+                    apps[i].Dispose();
+                return outlook;
+            }
+        }
+
 
         /// <summary>
         /// Returns the topmost Explorer object on the desktop. This object must be manually disposed.
@@ -114,6 +134,20 @@ namespace STC.Automation.Office.Outlook
         }
 
         /// <summary>
+        /// Returns an Application object that represents the parent Outlook application for the object. Read-only. This object must be manually disposed.
+        /// </summary>
+        public Application ParentApplication
+        {
+            get
+            {
+                var obj = InternalObject.GetType().InvokeMember("Application", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null);
+                if (obj != null)
+                    return new Application(obj);
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Returns the Microsoft Outlook version number.
         /// </summary>
         public Version Version
@@ -122,14 +156,6 @@ namespace STC.Automation.Office.Outlook
             {
                 return new Version(InternalObject.GetType().InvokeMember("Version", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null).ToString());
             }
-        }
-
-        public object Run(string proc, params object[] args)
-        {
-            List<object> inArgs = new List<object>(args);
-            inArgs.Insert(0, proc);
-
-            return InternalObject.GetType().InvokeMember("Run", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, inArgs.ToArray());
         }
 
         #region ComWrapper Members
