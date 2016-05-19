@@ -179,7 +179,25 @@
     <Compile Include="Excel\Workbook.cs" />
     <Compile Include="Excel\Workbooks.cs" />
     <Compile Include="Excel\Worksheet.cs" />
+    <Compile Include="Outlook\Application.cs" />
     <Compile Include="Interfaces\IDispatch.cs" />
+    <Compile Include="Outlook\Enums\AttachmentType.cs" />
+    <Compile Include="Outlook\Enums\DefaultFolders.cs" />
+    <Compile Include="Outlook\Enums\FolderDisplayMode.cs" />
+    <Compile Include="Outlook\Enums\Importance.cs" />
+    <Compile Include="Outlook\Enums\ItemType.cs" />
+    <Compile Include="Outlook\Enums\MailRecipientType.cs" />
+    <Compile Include="Outlook\Folder.cs" />
+    <Compile Include="Outlook\MailItem.cs" />
+    <Compile Include="Outlook\NameSpace.cs" />
+    <Compile Include="Outlook\OutlookItem.cs" />
+    <Compile Include="Outlook\MailItemRecipient.cs" />
+    <Compile Include="Outlook\Attachment.cs" />
+    <Compile Include="Outlook\Explorer.cs" />
+    <Compile Include="Outlook\Recipient.cs" />
+    <Compile Include="Outlook\Attachments.cs" />
+    <Compile Include="Outlook\Explorers.cs" />
+    <Compile Include="Outlook\Recipients.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -266,6 +284,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
