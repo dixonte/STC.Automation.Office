@@ -690,5 +690,105 @@ namespace Tester
 
             MessageBox.Show("Currently open workbooks:\r\n\r\n" + sb.ToString(), "Excel Info");
         }
+
+        private void CreateEmail(STC.Automation.Office.Outlook.Application outlook)
+        {
+            using (var msg = (STC.Automation.Office.Outlook.MailItem)outlook.CreateItem(STC.Automation.Office.Outlook.Enums.ItemType.MailItem))
+            {
+                using (var recipient = msg.Recipients.Add("to@example.com"))
+                    recipient.Type = (long)STC.Automation.Office.Outlook.Enums.MailRecipientType.To;
+                using (var recipient = msg.Recipients.Add("cc@example.com"))
+                    recipient.Type = (long)STC.Automation.Office.Outlook.Enums.MailRecipientType.CC;
+                msg.Subject = "This is the subject";
+                msg.Body = "This is the body of the email.";
+                msg.Importance = STC.Automation.Office.Outlook.Enums.Importance.High;
+                if (File.Exists(@"C:\test.txt"))
+                    using (var attachment = msg.Attachments.Add(@"C:\test.txt")) ;
+                msg.Recipients.ResolveAll();
+                msg.Display();
+                msg.Save();
+                //msg.Send();
+            }
+        }
+
+        private void btnNewOutlook_Click(object sender, EventArgs e)
+        {
+            using (var outlook = new STC.Automation.Office.Outlook.Application())
+            {
+                MessageBox.Show(outlook.Version.ToString());
+
+                using (var myNameSpace = outlook.GetNameSpace("MAPI"))
+                {
+                    using (var folder = myNameSpace.GetDefaultFolder(STC.Automation.Office.Outlook.Enums.DefaultFolders.Outbox))
+                        folder.Display();
+                }
+
+                CreateEmail(outlook);
+                //outlook.Quit();
+            }
+
+        }
+
+        private void btnOutlookExisting_Click(object sender, EventArgs e)
+        {
+            var apps = STC.Automation.Office.Outlook.Application.GetRunningApplications();
+            MessageBox.Show("Existing Outlook instances: " + apps.Count.ToString() + "\n" + (apps.Count == 0 ? "A new window will be created." : ""));
+            if (apps.Count == 0)
+                apps.Add(new STC.Automation.Office.Outlook.Application());
+
+            if (apps.Count > 0)
+            {
+                foreach (var app in apps)
+                    app.Dispose();
+
+                using (var outlook = STC.Automation.Office.Outlook.Application.GetOrCreateApplication())
+                {
+                    MessageBox.Show(outlook.Version.ToString());
+
+                    using (var explorer = outlook.ActiveExplorer)
+                    {
+                        if (explorer != null)
+                        {
+                            explorer.Activate();
+                            //using (var cur = explorer.CurrentFolder)
+                            //    cur.Display();
+                            using (var myNameSpace = outlook.GetNameSpace("MAPI"))
+                            {
+                                using (var folder = myNameSpace.GetDefaultFolder(STC.Automation.Office.Outlook.Enums.DefaultFolders.Outbox))
+                                    explorer.CurrentFolder = folder;
+                            }
+                        }
+                        else
+                        {
+                            using (var myNameSpace = outlook.GetNameSpace("MAPI"))
+                            {
+                                using (var folder = myNameSpace.GetDefaultFolder(STC.Automation.Office.Outlook.Enums.DefaultFolders.Outbox))
+                                    folder.Display();
+                            }
+                        }
+                    }
+
+                    CreateEmail(outlook);
+                    //outlook.Quit();
+                }
+            }
+        }
+
+        private void btnOutlookProcess_Click(object sender, EventArgs e)
+        {
+            using (var outlook = STC.Automation.Office.Outlook.Application.FromProcess(System.Diagnostics.Process.GetProcessesByName("outlook")[0]))
+            {
+                if (outlook != null)
+                {
+                    using (var explorer = outlook.ActiveExplorer)
+                    {
+                        if (explorer != null)
+                            explorer.Activate();
+                    }
+                }
+                else
+                    MessageBox.Show("Could not attach to existing outlook process");
+            }
+        }
     }
 }
