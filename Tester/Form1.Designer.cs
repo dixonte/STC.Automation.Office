@@ -33,6 +33,7 @@
             this.btnExcelByProcess = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAutoFilter = new System.Windows.Forms.Button();
+            this.btnExcelListOpen = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnWordByProc = new System.Windows.Forms.Button();
@@ -45,11 +46,15 @@
             this.btnExistingAccess = new System.Windows.Forms.Button();
             this.btnNewAccess = new System.Windows.Forms.Button();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnExcelListOpen = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnNewOutlook = new System.Windows.Forms.Button();
+            this.btnOutlookExisting = new System.Windows.Forms.Button();
+            this.btnOutlookProcess = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpADOB.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNewExcel
@@ -105,6 +110,16 @@
             this.btnAutoFilter.Text = "AutoFilter";
             this.btnAutoFilter.UseVisualStyleBackColor = true;
             this.btnAutoFilter.Click += new System.EventHandler(this.btnAutoFilter_Click);
+            // 
+            // btnExcelListOpen
+            // 
+            this.btnExcelListOpen.Location = new System.Drawing.Point(119, 89);
+            this.btnExcelListOpen.Name = "btnExcelListOpen";
+            this.btnExcelListOpen.Size = new System.Drawing.Size(113, 23);
+            this.btnExcelListOpen.TabIndex = 2;
+            this.btnExcelListOpen.Text = "List open workbooks";
+            this.btnExcelListOpen.UseVisualStyleBackColor = true;
+            this.btnExcelListOpen.Click += new System.EventHandler(this.btnExcelListOpen_Click);
             // 
             // groupBox2
             // 
@@ -225,27 +240,60 @@
             // 
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(792, 25);
+            this.toolStrip.Size = new System.Drawing.Size(802, 25);
             this.toolStrip.TabIndex = 6;
             this.toolStrip.Text = "toolStrip1";
             // 
-            // btnExcelListOpen
+            // groupBox4
             // 
-            this.btnExcelListOpen.Location = new System.Drawing.Point(119, 89);
-            this.btnExcelListOpen.Name = "btnExcelListOpen";
-            this.btnExcelListOpen.Size = new System.Drawing.Size(113, 23);
-            this.btnExcelListOpen.TabIndex = 2;
-            this.btnExcelListOpen.Text = "List open workbooks";
-            this.btnExcelListOpen.UseVisualStyleBackColor = true;
-            this.btnExcelListOpen.Click += new System.EventHandler(this.btnExcelListOpen_Click);
+            this.groupBox4.Controls.Add(this.btnOutlookProcess);
+            this.groupBox4.Controls.Add(this.btnOutlookExisting);
+            this.groupBox4.Controls.Add(this.btnNewOutlook);
+            this.groupBox4.Location = new System.Drawing.Point(532, 42);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(253, 96);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Outlook";
+            // 
+            // btnNewOutlook
+            // 
+            this.btnNewOutlook.Location = new System.Drawing.Point(15, 19);
+            this.btnNewOutlook.Name = "btnNewOutlook";
+            this.btnNewOutlook.Size = new System.Drawing.Size(98, 23);
+            this.btnNewOutlook.TabIndex = 0;
+            this.btnNewOutlook.Text = "New Instance";
+            this.btnNewOutlook.UseVisualStyleBackColor = true;
+            this.btnNewOutlook.Click += new System.EventHandler(this.btnNewOutlook_Click);
+            // 
+            // btnOutlookExisting
+            // 
+            this.btnOutlookExisting.Location = new System.Drawing.Point(15, 48);
+            this.btnOutlookExisting.Name = "btnOutlookExisting";
+            this.btnOutlookExisting.Size = new System.Drawing.Size(98, 23);
+            this.btnOutlookExisting.TabIndex = 0;
+            this.btnOutlookExisting.Text = "Existing ROT";
+            this.btnOutlookExisting.UseVisualStyleBackColor = true;
+            this.btnOutlookExisting.Click += new System.EventHandler(this.btnOutlookExisting_Click);
+            // 
+            // btnOutlookProcess
+            // 
+            this.btnOutlookProcess.Location = new System.Drawing.Point(119, 48);
+            this.btnOutlookProcess.Name = "btnOutlookProcess";
+            this.btnOutlookProcess.Size = new System.Drawing.Size(98, 23);
+            this.btnOutlookProcess.TabIndex = 0;
+            this.btnOutlookProcess.Text = "Existing process";
+            this.btnOutlookProcess.UseVisualStyleBackColor = true;
+            this.btnOutlookProcess.Click += new System.EventHandler(this.btnOutlookProcess_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 466);
+            this.ClientSize = new System.Drawing.Size(802, 466);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.grpADOB);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -255,6 +303,7 @@
             this.groupBox2.ResumeLayout(false);
             this.grpADOB.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,6 +329,10 @@
         private System.Windows.Forms.Button btnAutoFilter;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnExcelListOpen;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnNewOutlook;
+        private System.Windows.Forms.Button btnOutlookExisting;
+        private System.Windows.Forms.Button btnOutlookProcess;
     }
 }
 
