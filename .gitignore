@@ -214,3 +214,11 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+# Subversion working dir
+.svn
+
+# NuGet packages
+NuGet*.bat
+*/*.nuget.proj
+*/*.nuspec
