@@ -20,6 +20,38 @@ namespace STC.Automation.Office.ADODB
         }
 
         /// <summary>
+        /// Gets or sets a value that indicates the number of decimal places to which numeric values will be resolved.
+        /// </summary>
+        public byte NumericScale
+        {
+            get
+            {
+                return (byte)InternalObject.GetType().InvokeMember("NumericScale", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
+            }
+
+            set
+            {
+                InternalObject.GetType().InvokeMember("NumericScale", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates the maximum number of digits used to represent values.
+        /// </summary>
+        public byte Precision
+        {
+            get
+            {
+                return (byte)InternalObject.GetType().InvokeMember("Precision", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
+            }
+
+            set
+            {
+                InternalObject.GetType().InvokeMember("Precision", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
+            }
+        }
+
+        /// <summary>
         /// Gets the value stored in this field.
         /// If the returned object is a COM object, you will have to clean it up yourself.
         /// </summary>

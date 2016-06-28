@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Access\Application.cs" />
+    <Compile Include="ADODB\Defs\ColumnDef.cs" />
     <Compile Include="ADODB\Enums\DataType.cs" />
     <Compile Include="ADODB\Enums\FieldAttribute.cs" />
     <Compile Include="ADODB\Field.cs" />

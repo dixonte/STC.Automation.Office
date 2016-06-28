@@ -35,7 +35,7 @@ namespace STC.Automation.Office.ADODB
         /// <param name="name">Name of the field to add</param>
         /// <param name="dataType">Data type of the field to add</param>
         /// <param name="size">Size of the field to add</param>
-        public void Append(string name, DataType dataType, int? size)
+        public void Append(string name, DataType dataType, long? size)
         {
             Append(name, dataType, size, null);
         }
@@ -58,7 +58,7 @@ namespace STC.Automation.Office.ADODB
         /// <param name="dataType">Data type of the field to add</param>
         /// <param name="size">Size of the field to add</param>
         /// <param name="fieldAttributes">Attributes on the field to add</param>
-        public void Append(string name, DataType dataType, int? size, FieldAttribute? fieldAttributes)
+        public void Append(string name, DataType dataType, long? size, FieldAttribute? fieldAttributes)
         {
             List<object> parms = new List<object>();
             parms.Add(name);

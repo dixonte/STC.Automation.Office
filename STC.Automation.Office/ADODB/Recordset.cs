@@ -33,17 +33,30 @@ namespace STC.Automation.Office.ADODB
         /// Builds a Recordset from a DataTable object.
         /// </summary>
         /// <param name="table">The source DataTable.</param>
+        /// <param name="columnDefs">Optional. Provide size, precision, scale etc for columns in the DataTable.</param>
         /// <returns>A Recordset</returns>
-        public static Recordset FromDataTable(DataTable table)
+        public static Recordset FromDataTable(DataTable table, IEnumerable<Defs.ColumnDef> columnDefs = null)
         {
             Recordset rs = new Recordset();
+
+            var defs = new Dictionary<string, Defs.ColumnDef>();
+            if (columnDefs != null)
+            {
+                foreach (var columnDef in columnDefs)
+                {
+                    if (string.IsNullOrEmpty(columnDef.Name))
+                        throw new ArgumentException("columnDefs contains object with empty Name property.");
+
+                    defs.Add(columnDef.Name, columnDef);
+                }
+            }
 
             // Add the columns to the recordset
             for (int x = 0; x < table.Columns.Count; x++)
             {
                 DataColumn col = table.Columns[x];
                 Enums.DataType rsDataType;
-                int size;
+                long size;
 
                 size = 0; // default used for data types which do not have size
 
@@ -98,6 +111,14 @@ namespace STC.Automation.Office.ADODB
                     throw new NotImplementedException("Unsupported datatype found in DataTable during converion to Recordset");
                 }
 
+                Defs.ColumnDef def = null;
+                if (defs.ContainsKey(col.ColumnName))
+                {
+                    def = defs[col.ColumnName];
+                    if (def.DefinedSize.HasValue)
+                        size = def.DefinedSize.Value;
+                }
+
                 // create the column
                 if (size == 0)
                 {
@@ -110,6 +131,10 @@ namespace STC.Automation.Office.ADODB
                     rs.Fields.Append(col.Caption, rsDataType, size, STC.Automation.Office.ADODB.Enums.FieldAttribute.MayBeNull);
                 }
 
+                if (def?.Precision != null)
+                    rs.Fields[col.ColumnName].Precision = def.Precision.Value;
+                if (def?.NumericScale != null)
+                    rs.Fields[col.ColumnName].NumericScale = def.NumericScale.Value;
             }
 
             rs.Open();
