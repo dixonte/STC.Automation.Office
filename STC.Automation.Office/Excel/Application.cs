@@ -188,6 +188,22 @@ namespace STC.Automation.Office.Excel
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool ScreenUpdating
+        {
+            get
+            {
+                return (bool)InternalObject.GetType().InvokeMember("ScreenUpdating", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
+            }
+
+            set
+            {
+                InternalObject.GetType().InvokeMember("ScreenUpdating", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
+            }
+        }
+
+        /// <summary>
         /// Returns the Microsoft Excel version number.
         /// </summary>
         public Version Version
