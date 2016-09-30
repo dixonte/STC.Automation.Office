@@ -47,9 +47,10 @@
             this.btnNewAccess = new System.Windows.Forms.Button();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnNewOutlook = new System.Windows.Forms.Button();
-            this.btnOutlookExisting = new System.Windows.Forms.Button();
             this.btnOutlookProcess = new System.Windows.Forms.Button();
+            this.btnOutlookExisting = new System.Windows.Forms.Button();
+            this.btnNewOutlook = new System.Windows.Forms.Button();
+            this.ExcelToPdfButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpADOB.SuspendLayout();
@@ -81,7 +82,7 @@
             // 
             this.btnExcelByProcess.Location = new System.Drawing.Point(15, 48);
             this.btnExcelByProcess.Name = "btnExcelByProcess";
-            this.btnExcelByProcess.Size = new System.Drawing.Size(113, 23);
+            this.btnExcelByProcess.Size = new System.Drawing.Size(98, 23);
             this.btnExcelByProcess.TabIndex = 2;
             this.btnExcelByProcess.Text = "Existing process";
             this.btnExcelByProcess.UseVisualStyleBackColor = true;
@@ -89,6 +90,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ExcelToPdfButton);
             this.groupBox1.Controls.Add(this.btnAutoFilter);
             this.groupBox1.Controls.Add(this.btnNewExcel);
             this.groupBox1.Controls.Add(this.btnExcelListOpen);
@@ -256,15 +258,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Outlook";
             // 
-            // btnNewOutlook
+            // btnOutlookProcess
             // 
-            this.btnNewOutlook.Location = new System.Drawing.Point(15, 19);
-            this.btnNewOutlook.Name = "btnNewOutlook";
-            this.btnNewOutlook.Size = new System.Drawing.Size(98, 23);
-            this.btnNewOutlook.TabIndex = 0;
-            this.btnNewOutlook.Text = "New Instance";
-            this.btnNewOutlook.UseVisualStyleBackColor = true;
-            this.btnNewOutlook.Click += new System.EventHandler(this.btnNewOutlook_Click);
+            this.btnOutlookProcess.Location = new System.Drawing.Point(119, 48);
+            this.btnOutlookProcess.Name = "btnOutlookProcess";
+            this.btnOutlookProcess.Size = new System.Drawing.Size(98, 23);
+            this.btnOutlookProcess.TabIndex = 0;
+            this.btnOutlookProcess.Text = "Existing process";
+            this.btnOutlookProcess.UseVisualStyleBackColor = true;
+            this.btnOutlookProcess.Click += new System.EventHandler(this.btnOutlookProcess_Click);
             // 
             // btnOutlookExisting
             // 
@@ -276,15 +278,25 @@
             this.btnOutlookExisting.UseVisualStyleBackColor = true;
             this.btnOutlookExisting.Click += new System.EventHandler(this.btnOutlookExisting_Click);
             // 
-            // btnOutlookProcess
+            // btnNewOutlook
             // 
-            this.btnOutlookProcess.Location = new System.Drawing.Point(119, 48);
-            this.btnOutlookProcess.Name = "btnOutlookProcess";
-            this.btnOutlookProcess.Size = new System.Drawing.Size(98, 23);
-            this.btnOutlookProcess.TabIndex = 0;
-            this.btnOutlookProcess.Text = "Existing process";
-            this.btnOutlookProcess.UseVisualStyleBackColor = true;
-            this.btnOutlookProcess.Click += new System.EventHandler(this.btnOutlookProcess_Click);
+            this.btnNewOutlook.Location = new System.Drawing.Point(15, 19);
+            this.btnNewOutlook.Name = "btnNewOutlook";
+            this.btnNewOutlook.Size = new System.Drawing.Size(98, 23);
+            this.btnNewOutlook.TabIndex = 0;
+            this.btnNewOutlook.Text = "New Instance";
+            this.btnNewOutlook.UseVisualStyleBackColor = true;
+            this.btnNewOutlook.Click += new System.EventHandler(this.btnNewOutlook_Click);
+            // 
+            // ExcelToPdfButton
+            // 
+            this.ExcelToPdfButton.Location = new System.Drawing.Point(119, 48);
+            this.ExcelToPdfButton.Name = "ExcelToPdfButton";
+            this.ExcelToPdfButton.Size = new System.Drawing.Size(106, 23);
+            this.ExcelToPdfButton.TabIndex = 3;
+            this.ExcelToPdfButton.Text = "To pdf";
+            this.ExcelToPdfButton.UseVisualStyleBackColor = true;
+            this.ExcelToPdfButton.Click += new System.EventHandler(this.ExcelToPdfButton_Click);
             // 
             // Form1
             // 
@@ -333,6 +345,7 @@
         private System.Windows.Forms.Button btnNewOutlook;
         private System.Windows.Forms.Button btnOutlookExisting;
         private System.Windows.Forms.Button btnOutlookProcess;
+        private System.Windows.Forms.Button ExcelToPdfButton;
     }
 }
 
