@@ -127,6 +127,7 @@
     <Compile Include="Excel\Comment.cs" />
     <Compile Include="Excel\AutoFilter.cs" />
     <Compile Include="Excel\Enums\AutoFilterOperator.cs" />
+    <Compile Include="Excel\Enums\FixedFormatType.cs" />
     <Compile Include="Excel\Enums\Pattern.cs" />
     <Compile Include="Excel\Enums\SortOrientation.cs" />
     <Compile Include="Excel\Enums\SortDataOption.cs" />
