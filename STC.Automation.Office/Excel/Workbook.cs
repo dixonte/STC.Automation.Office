@@ -138,6 +138,18 @@ namespace STC.Automation.Office.Excel
         }
 
         /// <summary>
+        /// Saves the workbook under a new filename.
+        /// </summary>
+        /// <param name="Type">Can be either xlTypePDF or xlTypeXPS.</param>
+        /// <param name="Filename">A string that indicates the name of the file to be saved. You can include a full path or Excel saves the file in the current folder.</param>
+        public void ExportAsFixedFormat(Enums.FixedFormatType Type, string Filename )
+        {
+            var missing = System.Reflection.Missing.Value;
+
+            InternalObject.GetType().InvokeMember("ExportAsFixedFormat", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { Type, Filename });
+        }
+
+        /// <summary>
         /// Closes the workbook.
         /// </summary>
         public void Close()

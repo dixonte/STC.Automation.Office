@@ -153,6 +153,167 @@ namespace Tester
             //range.CopyFromRecordset(rs.InternalObject, System.Reflection.Missing.Value, 10);
         }
 
+        private void ExcelToPdfButton_Click(object sender, EventArgs e)
+        {
+            // Copy and paste job from btnNewExcel_Click
+            ADODB.Recordset rs = new ADODB.Recordset();
+            rs.Fields.Append("A", STC.Automation.Office.ADODB.Enums.DataType.VarWChar, 100);
+            rs.Fields.Append("B", STC.Automation.Office.ADODB.Enums.DataType.VarWChar, 100);
+            rs.Fields.Append("C", STC.Automation.Office.ADODB.Enums.DataType.VarWChar, 100);
+            rs.Open();
+            rs.AddNew(new string[] { "A", "B", "C" }, new object[] { "A1", "B2", "C3" });
+            rs.AddNew(new string[] { "A", "B", "C" }, new object[] { "A4", "B5", "C6" });
+            rs.AddNew(new string[] { "A", "B", "C" }, new object[] { "A7", "B8", "C9" });
+
+            // Excel
+            using (var excel = new Excel.Application())
+            {
+                excel.NewWorkbook += new STC.Automation.Office.Excel.Events.NewWorkbookEventHandler(excel_NewWorkbook);
+
+                excel.Visible = true;
+                excel.ScreenUpdating = false;
+                excel.DisplayAlerts = false;
+
+                MessageBox.Show("Version: " + excel.Version.ToString());
+
+                using (var workbook = (sender == btnNewExcel) ?
+                    excel.Workbooks.Add() :
+                    excel.Workbooks.Open(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName) + "\\Templates\\Open Tester.xls"))
+                {
+                    using (var worksheet = workbook.ActiveSheet)
+                    {
+                        using (var range = worksheet.Cells)
+                        {
+                            (range[1, 1]).Value = "Test";
+                        }
+
+                        using (var range = worksheet.Range("A2"))
+                        {
+                            range.CopyFromRecordset(rs.InternalObject, null, null);
+                        }
+
+                        using (var range = worksheet.Range("A2:B3"))
+                        {
+                            range.Font.Bold = true;
+                            range.Font.Color = Color.Teal;
+                            range.Font.Italic = true;
+                        }
+
+                        using (var range = worksheet.Range("D2:G10"))
+                        {
+                            string imgPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), @"Resources\Koala.jpg");
+                            Image img = null;
+                            try
+                            {
+                                img = Image.FromFile(imgPath);
+                            }
+                            catch { }
+                            //worksheet.Shapes.AddPicture(img, range, true, true).Dispose();
+
+                            if (img != null)
+                            {
+                                using (var shape = worksheet.Shapes.AddPicture(imgPath, false, true, range, true))
+                                {
+                                    MessageBox.Show(shape.Name);
+
+                                    worksheet.Hyperlinks.Add(shape, "http://www.google.com/").Dispose();
+                                }
+                            }
+                        }
+
+                        using (var range = worksheet.Range("B2"))
+                        {
+                            range.AddComment("A comment on cell B2");
+                            worksheet.Hyperlinks.Add(range, "http://lmgtfy.com/?q=excel+automation", screenTip: "Let Me Google That For You", textToDisplay: "LMGTFY").Dispose();
+                        }
+
+                        using (var range = worksheet.Range("B2"))
+                        {
+                            if (range.Comment != null)
+                                range.Comment.Text(" - New text", 20, false);
+                        }
+
+                        using (var range = worksheet.Range("B3"))
+                        {
+                            if (range.Comment == null)
+                                range.AddComment("Another text");
+
+                            if (range.Comment == null)
+                                range.AddComment("This should never be seen");
+                        }
+
+                        using (var range = worksheet.Range("C2"))
+                        {
+                            using (var interior = range.Interior)
+                            {
+                                interior.Color = Color.IndianRed;
+                                range.AddComment(interior.Color.ToString());
+                            }
+                        }
+                    }
+
+                    using (var testWorksheet = workbook.Worksheets.Add() as STC.Automation.Office.Excel.Worksheet)
+                    {
+                        testWorksheet.Name = "Programmatic Worksheet";
+                        using (var range = testWorksheet.Cells)
+                        {
+                            range[1, 1].Value = "Worksheet #2";
+                        }
+
+                        using (var chart = workbook.Sheets.Add(testWorksheet, type: Excel.Enums.SheetType.Chart) as STC.Automation.Office.Excel.Chart)
+                        {
+                            chart.Name = "Programmatic Chart";
+                        }
+                    }
+
+                    // Code stolen from http://stackoverflow.com/a/7401831/23401
+                    var exportSuccessful = true;
+                    var outputPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\test.pdf";
+                    try
+                    {
+                        // Call Excel's native export function (valid in Office 2007 and Office 2010, AFAIK)
+                        workbook.ExportAsFixedFormat(Excel.Enums.FixedFormatType.TypePDF, outputPath);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        // Mark the export as failed for the return value...
+                        exportSuccessful = false;
+
+                        // Do something with any exceptions here, if you wish...
+                        // MessageBox.Show...        
+                    }
+
+                    // You can use the following method to automatically open the PDF after export if you wish
+                    // Make sure that the file actually exists first...
+                    if (System.IO.File.Exists(outputPath))
+                    {
+                        System.Diagnostics.Process.Start(outputPath);
+                    }
+
+                    if (!exportSuccessful )
+                    {
+                        MessageBox.Show("Uh oh. Something went wrong", "Excel to pdf");
+                    }
+
+                    //workbook.Close();
+                }
+
+                //excel.Quit();
+            }
+
+            //Microsoft.Office.Interop.Excel.ApplicationClass excel = new Microsoft.Office.Interop.Excel.ApplicationClass();
+
+            //excel.Visible = true;
+
+            //var workbook = excel.Workbooks.Add(DBNull.Value);
+            //Microsoft.Office.Interop.Excel.Worksheet sheet = workbook.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
+
+            //Microsoft.Office.Interop.Excel.Range range = sheet.Cells[2, 1] as Microsoft.Office.Interop.Excel.Range;
+            //range.set_Item(0, 1, "Test");
+
+            //range.CopyFromRecordset(rs.InternalObject, System.Reflection.Missing.Value, 10);
+        }
+
         void excel_NewWorkbook(STC.Automation.Office.Excel.Workbook workbook)
         {
             
