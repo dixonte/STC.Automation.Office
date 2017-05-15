@@ -100,6 +100,7 @@
     <Compile Include="Clipboard\Win32ClipboardAPI.cs" />
     <Compile Include="Clipboard\Win32MemoryAPI.cs" />
     <Compile Include="Common\ComArguments.cs" />
+    <Compile Include="Common\Delegates.cs" />
     <Compile Include="Common\OfficeApplication.cs" />
     <Compile Include="Core\CommandBar.cs" />
     <Compile Include="Core\CommandBars.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Outlook\Enums\Importance.cs" />
     <Compile Include="Outlook\Enums\ItemType.cs" />
     <Compile Include="Outlook\Enums\MailRecipientType.cs" />
+    <Compile Include="Outlook\Events\IItemEvents.cs" />
+    <Compile Include="Outlook\Events\ItemEvents_Sink.cs" />
     <Compile Include="Outlook\Folder.cs" />
     <Compile Include="Outlook\MailItem.cs" />
     <Compile Include="Outlook\NameSpace.cs" />

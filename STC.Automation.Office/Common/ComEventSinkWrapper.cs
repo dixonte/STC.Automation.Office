@@ -12,17 +12,22 @@ namespace STC.Automation.Office.Common
     public abstract class ComEventSinkWrapper<I> : IDisposable
         where I: class
     {
+        /// <summary>
+        /// The object which owns this event sink. Used as the 'sender' of events.
+        /// </summary>
+        protected WeakReference Parent { get; private set; }
+
         private IConnectionPoint _connectionPoint;
         private int _sinkCookie;
 
-        internal ComEventSinkWrapper(IConnectionPointContainer pointContainer)
+        internal ComEventSinkWrapper(ComWrapper parent)
         {
             _sinkCookie = -1;
 
             Guid guid = typeof(I).GUID;
             try
             {
-                pointContainer.FindConnectionPoint(ref guid, out _connectionPoint);
+                ((IConnectionPointContainer)parent.InternalObject).FindConnectionPoint(ref guid, out _connectionPoint);
             }
             catch
             {
@@ -34,6 +39,7 @@ namespace STC.Automation.Office.Common
                 throw new COMException(string.Format("Could not wrap event sink for {0}. Could not find connection point.", typeof(I).Name));
             }
 
+            Parent = new WeakReference(parent);
             _connectionPoint.Advise(this, out _sinkCookie);
         }
 

@@ -9,7 +9,8 @@ namespace STC.Automation.Office.Excel.Events
     /// <summary>
     /// Imports events for Excel.Application
     /// </summary>
-    [ComImport, Guid("00024413-0000-0000-C000-000000000046"), TypeLibType((short)0x1010), InterfaceType((short)2)]
+    [ComImport, Guid("00024413-0000-0000-C000-000000000046")]
+    [TypeLibType(TypeLibTypeFlags.FCanCreate | TypeLibTypeFlags.FPreDeclId), InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
     public interface IAppEvents
     {
         /// <summary>

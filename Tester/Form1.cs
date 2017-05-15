@@ -951,5 +951,37 @@ namespace Tester
                     MessageBox.Show("Could not attach to existing outlook process");
             }
         }
+
+        private void btnCreateOutlookMail_Click(object sender, EventArgs e)
+        {
+            using (var outlook = new STC.Automation.Office.Outlook.Application())
+            {
+                using (var mail = (STC.Automation.Office.Outlook.MailItem)outlook.CreateItem(STC.Automation.Office.Outlook.Enums.ItemType.MailItem))
+                {
+                    using (var recipient = mail.Recipients.Add("software@pittsh.com.au"))
+                    {
+                        recipient.Type = (long)STC.Automation.Office.Outlook.Enums.MailRecipientType.To;
+                    }
+
+                    mail.Closing += Mail_Closing;
+                    mail.Sending += Mail_Sending;
+
+                    mail.Subject = "Test email";
+                    mail.Body = "Hello from automation!";
+
+                    mail.Display(true);
+                }
+            }
+        }
+
+        private void Mail_Sending(object sender, ref bool cancel)
+        {
+            MessageBox.Show(this, "Mail sending");
+        }
+
+        private void Mail_Closing(object sender, ref bool cancel)
+        {
+            MessageBox.Show(this, "Mail closing");
+        }
     }
 }

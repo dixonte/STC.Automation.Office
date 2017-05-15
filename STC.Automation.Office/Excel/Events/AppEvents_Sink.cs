@@ -35,8 +35,8 @@ namespace STC.Automation.Office.Excel.Events
     [ClassInterface(ClassInterfaceType.None)]
     public sealed class AppEvents_Sink : ComEventSinkWrapper<IAppEvents>, IAppEvents
     {
-        internal AppEvents_Sink(IConnectionPointContainer pointContainer)
-            : base(pointContainer)
+        internal AppEvents_Sink(ComWrapper parent)
+            : base(parent)
         {
         }
 
@@ -51,8 +51,7 @@ namespace STC.Automation.Office.Excel.Events
         {
             using (Workbook workbook = new Workbook(ComWorkbook))
             {
-                if (NewWorkbookEvent != null)
-                    NewWorkbookEvent(workbook);
+                NewWorkbookEvent?.Invoke(workbook);
             }
         }
 
@@ -69,8 +68,7 @@ namespace STC.Automation.Office.Excel.Events
             {
                 using (Range range = new Range(ComRange))
                 {
-                    if (SheetSelectionChangeEvent != null)
-                        SheetSelectionChangeEvent(worksheet, range);
+                    SheetSelectionChangeEvent?.Invoke(worksheet, range);
                 }
             }
         }
@@ -88,8 +86,7 @@ namespace STC.Automation.Office.Excel.Events
             {
                 using (Range range = new Range(ComRange))
                 {
-                    if (SheetBeforeDoubleClickEvent != null)
-                        SheetBeforeDoubleClickEvent(worksheet, range, ref Cancel);
+                    SheetBeforeDoubleClickEvent?.Invoke(worksheet, range, ref Cancel);
                 }
             }
         }
@@ -107,8 +104,7 @@ namespace STC.Automation.Office.Excel.Events
             {
                 using (Range range = new Range(ComRange))
                 {
-                    if (SheetBeforeRightClickEvent != null)
-                        SheetBeforeRightClickEvent(worksheet, range, ref Cancel);
+                    SheetBeforeRightClickEvent?.Invoke(worksheet, range, ref Cancel);
                 }
             }
         }

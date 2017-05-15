@@ -32,6 +32,7 @@
             this.btnExistingExcel = new System.Windows.Forms.Button();
             this.btnExcelByProcess = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ExcelToPdfButton = new System.Windows.Forms.Button();
             this.btnAutoFilter = new System.Windows.Forms.Button();
             this.btnExcelListOpen = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,7 +51,7 @@
             this.btnOutlookProcess = new System.Windows.Forms.Button();
             this.btnOutlookExisting = new System.Windows.Forms.Button();
             this.btnNewOutlook = new System.Windows.Forms.Button();
-            this.ExcelToPdfButton = new System.Windows.Forms.Button();
+            this.btnCreateOutlookMail = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpADOB.SuspendLayout();
@@ -102,6 +103,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Excel";
+            // 
+            // ExcelToPdfButton
+            // 
+            this.ExcelToPdfButton.Location = new System.Drawing.Point(119, 48);
+            this.ExcelToPdfButton.Name = "ExcelToPdfButton";
+            this.ExcelToPdfButton.Size = new System.Drawing.Size(106, 23);
+            this.ExcelToPdfButton.TabIndex = 3;
+            this.ExcelToPdfButton.Text = "To pdf";
+            this.ExcelToPdfButton.UseVisualStyleBackColor = true;
+            this.ExcelToPdfButton.Click += new System.EventHandler(this.ExcelToPdfButton_Click);
             // 
             // btnAutoFilter
             // 
@@ -248,6 +259,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnCreateOutlookMail);
             this.groupBox4.Controls.Add(this.btnOutlookProcess);
             this.groupBox4.Controls.Add(this.btnOutlookExisting);
             this.groupBox4.Controls.Add(this.btnNewOutlook);
@@ -288,15 +300,15 @@
             this.btnNewOutlook.UseVisualStyleBackColor = true;
             this.btnNewOutlook.Click += new System.EventHandler(this.btnNewOutlook_Click);
             // 
-            // ExcelToPdfButton
+            // btnCreateOutlookMail
             // 
-            this.ExcelToPdfButton.Location = new System.Drawing.Point(119, 48);
-            this.ExcelToPdfButton.Name = "ExcelToPdfButton";
-            this.ExcelToPdfButton.Size = new System.Drawing.Size(106, 23);
-            this.ExcelToPdfButton.TabIndex = 3;
-            this.ExcelToPdfButton.Text = "To pdf";
-            this.ExcelToPdfButton.UseVisualStyleBackColor = true;
-            this.ExcelToPdfButton.Click += new System.EventHandler(this.ExcelToPdfButton_Click);
+            this.btnCreateOutlookMail.Location = new System.Drawing.Point(119, 19);
+            this.btnCreateOutlookMail.Name = "btnCreateOutlookMail";
+            this.btnCreateOutlookMail.Size = new System.Drawing.Size(98, 23);
+            this.btnCreateOutlookMail.TabIndex = 1;
+            this.btnCreateOutlookMail.Text = "Create mail";
+            this.btnCreateOutlookMail.UseVisualStyleBackColor = true;
+            this.btnCreateOutlookMail.Click += new System.EventHandler(this.btnCreateOutlookMail_Click);
             // 
             // Form1
             // 
@@ -346,6 +358,7 @@
         private System.Windows.Forms.Button btnOutlookExisting;
         private System.Windows.Forms.Button btnOutlookProcess;
         private System.Windows.Forms.Button ExcelToPdfButton;
+        private System.Windows.Forms.Button btnCreateOutlookMail;
     }
 }
 

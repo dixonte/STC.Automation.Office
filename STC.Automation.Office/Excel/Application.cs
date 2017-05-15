@@ -29,13 +29,13 @@ namespace STC.Automation.Office.Excel
         public Application()
             : base()
         {
-            _eventSink = new AppEvents_Sink(InternalObject as IConnectionPointContainer);
+            _eventSink = new AppEvents_Sink(this);
         }
 
         internal Application(object applicationObj)
             : base(applicationObj)
         {
-            _eventSink = new AppEvents_Sink(InternalObject as IConnectionPointContainer);
+            _eventSink = new AppEvents_Sink(this);
         }
 
         /// <summary>
@@ -212,39 +212,6 @@ namespace STC.Automation.Office.Excel
             {
                 return new Version(InternalObject.GetType().InvokeMember("Version", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null).ToString());
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the visibility of the Excel program window
-        /// </summary>
-        public bool Visible
-        {
-            get
-            {
-                return (bool)InternalObject.GetType().InvokeMember("Visible", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
-            }
-
-            set
-            {
-                InternalObject.GetType().InvokeMember("Visible", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
-            }
-        }
-
-        /// <summary>
-        /// Tells Excel to close itself. It may not actually close if you are still holding references to Excel objects; use of the using() clause is recommended.
-        /// </summary>
-        public void Quit()
-        {
-            InternalObject.GetType().InvokeMember("Quit", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null);
-        }
-
-        
-        public object Run(string proc, params object[] args)
-        {
-            List<object> inArgs = new List<object>(args);
-            inArgs.Insert(0, proc);
-
-            return InternalObject.GetType().InvokeMember("Run", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, inArgs.ToArray());
         }
         
         /// <summary>

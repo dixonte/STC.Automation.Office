@@ -100,22 +100,6 @@ namespace STC.Automation.Office.Word
         }
 
         /// <summary>
-        /// Tells Excel to close itself. It may not actually close if you are still holding references to Excel objects; use of the using() clause is recommended.
-        /// </summary>
-        public void Quit()
-        {
-            InternalObject.GetType().InvokeMember("Quit", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null);
-        }
-
-        public object Run(string proc, params object[] args)
-        {
-            List<object> inArgs = new List<object>(args);
-            inArgs.Insert(0, proc);
-
-            return InternalObject.GetType().InvokeMember("Run", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, inArgs.ToArray());
-        }
-
-        /// <summary>
         /// Gets the Selection object that represents a selected range or the insertion point.
         /// </summary>
         public Selection Selection
@@ -139,22 +123,6 @@ namespace STC.Automation.Office.Word
             get
             {
                 return new Version(InternalObject.GetType().InvokeMember("Version", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null).ToString());
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the visibility of the Word program window
-        /// </summary>
-        public bool Visible
-        {
-            get
-            {
-                return (bool)InternalObject.GetType().InvokeMember("Visible", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
-            }
-
-            set
-            {
-                InternalObject.GetType().InvokeMember("Visible", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
             }
         }
 
