@@ -46,6 +46,22 @@ namespace STC.Automation.Office.Outlook
             base.Dispose(true);
         }
 
+        /// <summary>
+        /// Returns an Inspector object that represents an inspector initialized to contain the specified item. This item is internally cached and does not require manual disposal.
+        /// </summary>
+        /// <returns></returns>
+        public Inspector Inspector
+        {
+            get
+            {
+                if (_inspector == null)
+                    _inspector = new Inspector(InternalObject.GetType().InvokeMember("GetInspector", System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.Public, null, InternalObject, null));
+
+                return _inspector;
+            }
+        }
+        private Inspector _inspector;
+
         #region Events
         /// <summary>
         /// Occurs when an instance of the parent object is being opened in an Inspector.

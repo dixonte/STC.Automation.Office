@@ -22,7 +22,7 @@ namespace STC.Automation.Office.Outlook
         }
 
         /// <summary>
-        /// Returns an Attachments object that represents all the attachments for the specified item. This object is internally cached and does not require manual disposal..
+        /// Returns an Attachments object that represents all the attachments for the specified item. This object is internally cached and does not require manual disposal.
         /// </summary>
         public Attachments Attachments
         {

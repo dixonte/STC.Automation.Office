@@ -192,6 +192,7 @@
     <Compile Include="Outlook\Enums\MailRecipientType.cs" />
     <Compile Include="Outlook\Events\IItemEvents.cs" />
     <Compile Include="Outlook\Events\ItemEvents_Sink.cs" />
+    <Compile Include="Outlook\Inspector.cs" />
     <Compile Include="Outlook\Folder.cs" />
     <Compile Include="Outlook\MailItem.cs" />
     <Compile Include="Outlook\NameSpace.cs" />

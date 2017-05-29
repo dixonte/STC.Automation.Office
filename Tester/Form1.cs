@@ -963,11 +963,16 @@ namespace Tester
                         recipient.Type = (long)STC.Automation.Office.Outlook.Enums.MailRecipientType.To;
                     }
 
+                    mail.Subject = "Test email";
+                    mail.Body = "Hello from automation!";
+
                     mail.Closing += Mail_Closing;
                     mail.Sending += Mail_Sending;
 
-                    mail.Subject = "Test email";
-                    mail.Body = "Hello from automation!";
+                    // Doing this has the same (or at least similar) effect as calling mail.Display(), in that it shows the message and prevents
+                    // mail.Display(true) from making the inspector modal. This in turn means that the method used here for fielding events will
+                    // not work.
+                    // mail.Inspector.Activate();
 
                     mail.Display(true);
                 }
