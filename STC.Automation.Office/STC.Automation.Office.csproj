@@ -200,6 +200,7 @@
     <Compile Include="Outlook\MailItemRecipient.cs" />
     <Compile Include="Outlook\Attachment.cs" />
     <Compile Include="Outlook\Explorer.cs" />
+    <Compile Include="Outlook\PropertyAccessor.cs" />
     <Compile Include="Outlook\Recipient.cs" />
     <Compile Include="Outlook\Attachments.cs" />
     <Compile Include="Outlook\Explorers.cs" />
