@@ -112,6 +112,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\embedded-image.png" />
+    <None Include="Resources\attached-image.jpg" />
     <Content Include="Templates\AutoFilter.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

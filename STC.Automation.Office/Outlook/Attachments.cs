@@ -36,7 +36,7 @@ namespace STC.Automation.Office.Outlook
         }
 
         /// <summary>
-        /// Index the Recipients collection to get a recipient
+        /// Returns an Attachment object from the collection.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>

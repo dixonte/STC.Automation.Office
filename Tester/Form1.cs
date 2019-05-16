@@ -14,6 +14,7 @@ using System.IO;
 using System.Data.SqlClient;
 using STC.Automation.Office.Core;
 using STC.Automation.Office.Excel.Utilities;
+using STC.Automation.Office.Outlook;
 
 namespace Tester
 {
@@ -973,6 +974,29 @@ namespace Tester
                     // mail.Display(true) from making the inspector modal. This in turn means that the method used here for fielding events will
                     // not work.
                     // mail.Inspector.Activate();
+
+
+                    // create temporary files for attachments as the method only accepts a filepath
+
+                    // first attachment is just added and the attachment object disposed
+                    var root = Path.Combine(Path.GetTempPath(), "STC.Automation.Office");
+                    try { Directory.CreateDirectory(root); } catch { }
+                    var filename = Path.Combine(root, "attached-image.jpg");
+                    using (var writer = new FileStream(filename, FileMode.Create))
+                        Properties.Resources.attached_image.Save(writer, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    mail.Attachments.Add(filename).Dispose();
+
+                    // second attachment will be added inline in the message body
+                    filename = Path.Combine(root, "embedded-image.png");
+                    using (var writer = new FileStream(filename, FileMode.Create))
+                        Properties.Resources.embedded_image.Save(writer, System.Drawing.Imaging.ImageFormat.Png);
+                    using (var attachment = mail.Attachments.Add(filename))
+                    {
+                        // derived from https://stackoverflow.com/a/14052552
+                        attachment.PropertyAccessor.SetProperty(Attachment.PR_ATTACH_MIME_TAG, "image/png");
+                        attachment.PropertyAccessor.SetProperty(Attachment.PR_ATTACH_CONTENT_ID, "myContentId");
+                    }
+                    mail.HtmlBody = "<p>Hello from automation!</p><p><img src=cid:myContentId width=400 height=300></p>";
 
                     mail.Display(true);
                 }
