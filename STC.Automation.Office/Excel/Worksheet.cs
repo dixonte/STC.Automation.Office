@@ -22,6 +22,7 @@ namespace STC.Automation.Office.Excel
         private PageSetup _pageSetup;
         private ChartObjects _chartobjects;
         private Hyperlinks _hyperlinks;
+        private PivotTables _pivotTables;
 
         internal Worksheet(object worksheetObj)
             : base(worksheetObj)
@@ -93,6 +94,23 @@ namespace STC.Automation.Office.Excel
                 return _chartobjects;
             }
                 
+        }
+
+        /// <summary>
+        /// Returns an object that represents either a single PivotTable report (a PivotTable object) or a collection of all the PivotTable reports (a PivotTables object) on a worksheet. Read-only.
+        /// This object is internally cached and does not require manual disposal.
+        /// </summary>
+        public PivotTables PivotTables
+        {
+            get
+            {
+                if (_pivotTables == null)
+                {
+                    _pivotTables = new PivotTables(InternalObject.GetType().InvokeMember("PivotTables", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                }
+
+                return _pivotTables;
+            }
         }
 
         /// <summary>
@@ -317,6 +335,12 @@ namespace STC.Automation.Office.Excel
             {
                 _hyperlinks.Dispose();
                 _hyperlinks = null;
+            }
+
+            if (_pivotTables != null)
+            {
+                _pivotTables.Dispose();
+                _pivotTables = null;
             }
 
             base.Dispose(disposing);

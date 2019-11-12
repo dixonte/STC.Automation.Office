@@ -15,6 +15,7 @@ namespace STC.Automation.Office.Excel
     {
         private Sheets _worksheets;
         private Sheets _sheets;
+        private PivotCaches _pivotCaches;
 
         internal Workbook(object workbookObj)
             : base(workbookObj)
@@ -76,6 +77,24 @@ namespace STC.Automation.Office.Excel
                 return _sheets;
             }
         }
+
+        /// <summary>
+        /// Returns a PivotCaches collection that represents all the PivotTable caches in the specified workbook. Read-only.
+        /// NOTE: Microsoft treats this as a method, rather than a property. We are treating it like a property and caching its result
+        /// </summary>
+        public PivotCaches PivotCaches
+        {
+            get
+            {
+                if (_pivotCaches == null)
+                {
+                    _pivotCaches = new PivotCaches(InternalObject.GetType().InvokeMember("PivotCaches", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null));
+                }
+
+                return _pivotCaches;
+            }
+        }
+
 
         /// <summary>
         /// Provides methods for dealing with worksheets in this workbook. This object is internally cached and does not require manual disposal.
@@ -201,6 +220,12 @@ namespace STC.Automation.Office.Excel
                 {
                     _sheets.Dispose();
                     _sheets = null;
+                }
+
+                if (_pivotCaches != null)
+                {
+                    _pivotCaches.Dispose();
+                    _pivotCaches = null;
                 }
             }
 

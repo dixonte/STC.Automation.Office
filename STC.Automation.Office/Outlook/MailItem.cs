@@ -22,7 +22,7 @@ namespace STC.Automation.Office.Outlook
         }
 
         /// <summary>
-        /// Returns an Attachments object that represents all the attachments for the specified item. This object is internally cached and does not require manual disposal..
+        /// Returns an Attachments object that represents all the attachments for the specified item. This object is internally cached and does not require manual disposal.
         /// </summary>
         public Attachments Attachments
         {
@@ -84,6 +84,21 @@ namespace STC.Automation.Office.Outlook
         }
 
         /// <summary>
+        /// Returns or sets a String representing the HTML body of the Outlook item. Read/write.
+        /// </summary>
+        public string HtmlBody
+        {
+            get
+            {
+                return (string)InternalObject.GetType().InvokeMember("HtmlBody", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
+            }
+            set
+            {
+                InternalObject.GetType().InvokeMember("HtmlBody", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
+            }
+        }
+
+        /// <summary>
         /// Returns or sets a String indicating the subject for the Outlook item. Read/write.
         /// </summary>
         public Importance Importance
@@ -101,9 +116,9 @@ namespace STC.Automation.Office.Outlook
         /// <summary>
         /// Displays a new Explorer object for the MailItem.
         /// </summary>
-        public void Display()
+        public void Display(bool modal = false)
         {
-            InternalObject.GetType().InvokeMember("Display", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { });
+            InternalObject.GetType().InvokeMember("Display", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { modal });
         }
 
         /// <summary>
@@ -120,6 +135,17 @@ namespace STC.Automation.Office.Outlook
         public void Save()
         {
             InternalObject.GetType().InvokeMember("Save", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { });
+        }
+
+        /// <summary>
+        /// Returns a Boolean value that indicates if a message has been sent. Read-only.
+        /// </summary>
+        public bool Sent
+        {
+            get
+            {
+                return (bool)InternalObject.GetType().InvokeMember("Sent", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
+            }
         }
 
         #region ComWrapper Members

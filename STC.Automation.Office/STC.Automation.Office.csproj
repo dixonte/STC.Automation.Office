@@ -100,6 +100,7 @@
     <Compile Include="Clipboard\Win32ClipboardAPI.cs" />
     <Compile Include="Clipboard\Win32MemoryAPI.cs" />
     <Compile Include="Common\ComArguments.cs" />
+    <Compile Include="Common\Delegates.cs" />
     <Compile Include="Common\OfficeApplication.cs" />
     <Compile Include="Core\CommandBar.cs" />
     <Compile Include="Core\CommandBars.cs" />
@@ -132,6 +133,15 @@
     <Compile Include="Excel\Enums\SortOrientation.cs" />
     <Compile Include="Excel\Enums\SortDataOption.cs" />
     <Compile Include="Excel\Enums\SortOn.cs" />
+    <Compile Include="Excel\Enums\XlPivotTableSourceType.cs" />
+    <Compile Include="Excel\Enums\XlPivotTableVersionList.cs" />
+    <Compile Include="Excel\PivotCache.cs" />
+    <Compile Include="Excel\PivotCaches.cs" />
+    <Compile Include="Excel\PivotField.cs" />
+    <Compile Include="Excel\PivotFields.cs" />
+    <Compile Include="Excel\PivotItem.cs" />
+    <Compile Include="Excel\PivotTable.cs" />
+    <Compile Include="Excel\PivotTables.cs" />
     <Compile Include="Excel\SortFields.cs" />
     <Compile Include="Excel\Sort.cs" />
     <Compile Include="Excel\Hyperlink.cs" />
@@ -189,6 +199,9 @@
     <Compile Include="Outlook\Enums\Importance.cs" />
     <Compile Include="Outlook\Enums\ItemType.cs" />
     <Compile Include="Outlook\Enums\MailRecipientType.cs" />
+    <Compile Include="Outlook\Events\IItemEvents.cs" />
+    <Compile Include="Outlook\Events\ItemEvents_Sink.cs" />
+    <Compile Include="Outlook\Inspector.cs" />
     <Compile Include="Outlook\Folder.cs" />
     <Compile Include="Outlook\MailItem.cs" />
     <Compile Include="Outlook\NameSpace.cs" />
@@ -196,6 +209,7 @@
     <Compile Include="Outlook\MailItemRecipient.cs" />
     <Compile Include="Outlook\Attachment.cs" />
     <Compile Include="Outlook\Explorer.cs" />
+    <Compile Include="Outlook\PropertyAccessor.cs" />
     <Compile Include="Outlook\Recipient.cs" />
     <Compile Include="Outlook\Attachments.cs" />
     <Compile Include="Outlook\Explorers.cs" />
