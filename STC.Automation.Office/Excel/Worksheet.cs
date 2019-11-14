@@ -81,14 +81,14 @@ namespace STC.Automation.Office.Excel
         /// <summary>
         /// The collection of ChartObject objects for this worksheet
         /// </summary>
-        [Obsolete("Be cautious using this object as it is not documented in the Excel OLE model and should not be relied upon.")]
+        [Obsolete("Be cautious using this object. It was previously not documented in the Excel OLE model. It has since been changed from a Get property to a method invoke.")]
         public ChartObjects ChartObjects
         {
             get
             {
                 if (_chartobjects == null)
                 {
-                    _chartobjects = new ChartObjects(InternalObject.GetType().InvokeMember("ChartObjects", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                    _chartobjects = new ChartObjects(InternalObject.GetType().InvokeMember("ChartObjects", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null));
                 }
 
                 return _chartobjects;

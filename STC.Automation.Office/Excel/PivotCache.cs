@@ -14,6 +14,28 @@ namespace STC.Automation.Office.Excel
         {
         }
 
+        /// <summary>
+        /// Causes the specified chart to be redrawn immediately.
+        /// </summary>
+        public void Refresh()
+        {
+            InternalObject.GetType().InvokeMember("Refresh", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null);
+        }
 
+        /// <summary>
+        /// True if the PivotTable cache is automatically updated each time the workbook is opened. The default value is False. Read/write Boolean.
+        /// </summary>
+        public bool RefreshOnFileOpen
+        {
+            get
+            {
+                return (bool)(InternalObject.GetType().InvokeMember("RefreshOnFileOpen", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+            }
+
+            set
+            {
+                InternalObject.GetType().InvokeMember("RefreshOnFileOpen", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
+            }
+        }
     }
 }

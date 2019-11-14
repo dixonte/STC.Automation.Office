@@ -45,6 +45,15 @@ namespace STC.Automation.Office.Excel
         }
 
         /// <summary>
+        /// Returns a PivotCache object that represents the cache for the specified PivotTable report. Read-only.
+        /// </summary>
+        /// <returns>PivotCache</returns>
+        public PivotCache PivotCache()
+        {
+            return new PivotCache(InternalObject.GetType().InvokeMember("PivotCache", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null));
+        }
+
+        /// <summary>
         /// Returns an object that represents either a single PivotTable field (a PivotField object) or a collection of both the visible and hidden fields (a PivotFields object) in the PivotTable report. Read-only.
         /// </summary>
         /// <param name="index">The name of the field to be returned.</param>
@@ -52,6 +61,22 @@ namespace STC.Automation.Office.Excel
         public PivotField PivotFields(string index)
         {
             return new PivotField(InternalObject.GetType().InvokeMember("PivotFields", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { index }));
+        }
+
+        /// <summary>
+        /// True if data for the PivotTable report is saved with the workbook. False if only the report definition is saved. Read/write Boolean.
+        /// </summary>
+        public bool SaveData
+        {
+            get
+            {
+                return (bool)(InternalObject.GetType().InvokeMember("SaveData", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+            }
+
+            set
+            {
+                InternalObject.GetType().InvokeMember("SaveData", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { value });
+            }
         }
     }
 }

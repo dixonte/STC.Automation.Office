@@ -28,6 +28,26 @@ namespace STC.Automation.Office.Excel
         {
             return new ChartObject(InternalObject.GetType().InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { left, top, width, height }));
         }
-       
+
+        /// <summary>
+        /// Returns a single object from a collection.
+        /// </summary>
+        /// <param name="index">The index number for the object.</param>
+        /// <returns></returns>
+        public ChartObject Item(int index)
+        {
+            return new ChartObject(InternalObject.GetType().InvokeMember("Item", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { index }));
+        }
+
+        /// <summary>
+        /// Returns a single object from a collection.
+        /// </summary>
+        /// <param name="name">The index name for the object.</param>
+        /// <returns></returns>
+        public ChartObject Item(string name)
+        {
+            return new ChartObject(InternalObject.GetType().InvokeMember("Item", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { name }));
+        }
+
     }
 }

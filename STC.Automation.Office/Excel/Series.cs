@@ -15,6 +15,8 @@ namespace STC.Automation.Office.Excel
     [System.Obsolete("This class has not been fully tested yet and it not guaranteed to work")]
     public class Series : ComWrapper
     {
+        private ChartFormat _chartformat;
+
         internal Series(object interiorObj)
             : base(interiorObj)
         {
@@ -46,6 +48,22 @@ namespace STC.Automation.Office.Excel
             get
             {
                 return new Border(InternalObject.GetType().InvokeMember("Border", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+            }
+        }
+
+        /// <summary>
+        /// Returns the ChartFormat object. Read-only.
+        /// </summary>
+        public ChartFormat Format
+        {
+            get
+            {
+                if (_chartformat == null)
+                {
+                    _chartformat = new ChartFormat(InternalObject.GetType().InvokeMember("Format", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                }
+
+                return _chartformat;
             }
         }
 
@@ -127,6 +145,17 @@ namespace STC.Automation.Office.Excel
             {
                 InternalObject.GetType().InvokeMember("ChartType", System.Reflection.BindingFlags.SetProperty, null, InternalObject, new object[] { (int)value });
             }
+        }
+
+        internal override void Dispose(bool disposing)
+        {
+            if (_chartformat != null)
+            {
+                _chartformat.Dispose();
+                _chartformat = null;
+            }
+
+            base.Dispose(disposing);
         }
 
     }
