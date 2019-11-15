@@ -114,6 +114,7 @@
     <Compile Include="Core\CommandBarComboBox.cs" />
     <Compile Include="Core\Enums\HyperlinkType.cs" />
     <Compile Include="Core\Enums\TriState.cs" />
+    <Compile Include="DataLabel.cs" />
     <Compile Include="Excel\Application.cs" />
     <Compile Include="Excel\Axes.cs" />
     <Compile Include="Excel\Axis.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Excel\PivotItem.cs" />
     <Compile Include="Excel\PivotTable.cs" />
     <Compile Include="Excel\PivotTables.cs" />
+    <Compile Include="Excel\Point.cs" />
     <Compile Include="Excel\SortFields.cs" />
     <Compile Include="Excel\Sort.cs" />
     <Compile Include="Excel\Hyperlink.cs" />

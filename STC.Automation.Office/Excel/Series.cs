@@ -158,5 +158,25 @@ namespace STC.Automation.Office.Excel
             base.Dispose(disposing);
         }
 
+        /// <summary>
+        /// Represents a single point in a series in a chart.
+        /// </summary>
+        /// <param name="index">The index number for the object.</param>
+        /// <returns></returns>
+        public Point Points(int index)
+        {
+            return new Point(InternalObject.GetType().InvokeMember("Points", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { index }));
+        }
+
+        /// <summary>
+        /// Represents a single point in a series in a chart.
+        /// </summary>
+        /// <param name="name">The index name for the object.</param>
+        /// <returns></returns>
+        public Point Points(string name)
+        {
+            return new Point(InternalObject.GetType().InvokeMember("Points", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, new object[] { name }));
+        }
+
     }
 }

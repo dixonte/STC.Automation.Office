@@ -71,7 +71,7 @@ namespace STC.Automation.Office.Excel
             {
                 if (_sheets == null)
                 {
-                    _sheets = new Sheets(InternalObject.GetType().InvokeMember("Sheets", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                     _sheets = new Sheets(InternalObject.GetType().InvokeMember("Sheets", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
                 }
 
                 return _sheets;
