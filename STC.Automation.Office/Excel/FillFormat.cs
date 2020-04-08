@@ -1,5 +1,6 @@
 ﻿using STC.Automation.Office.Attributes;
 using STC.Automation.Office.Common;
+using STC.Automation.Office.Core.Enums;
 using STC.Automation.Office.Excel.Enums;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,11 @@ namespace STC.Automation.Office.Excel
         /// <summary>
         /// Returns or sets an MsoTriState value that determines whether the object is visible. Read/write.
         /// </summary>
-        public MsoTriState Visible
+        public TriState Visible
         {
             get
             {
-                return (MsoTriState)InternalObject.GetType().InvokeMember("Visible", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
+                return (TriState)InternalObject.GetType().InvokeMember("Visible", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null);
             }
 
             set

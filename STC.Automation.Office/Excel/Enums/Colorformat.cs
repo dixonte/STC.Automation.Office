@@ -1,5 +1,6 @@
 ﻿using STC.Automation.Office.Attributes;
 using STC.Automation.Office.Common;
+using STC.Automation.Office.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,11 +22,11 @@ namespace STC.Automation.Office.Excel.Enums
         /// <summary>
         /// Returns or sets a color that is mapped to the theme color scheme. Read/write MsoThemeColorIndex.
         /// </summary>
-        public MsoThemeColorIndex ObjectThemeColor
+        public ThemeColorIndex ObjectThemeColor
         {
             get
             {
-                return (MsoThemeColorIndex)(InternalObject.GetType().InvokeMember("ObjectThemeColor", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                return (ThemeColorIndex)(InternalObject.GetType().InvokeMember("ObjectThemeColor", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
             }
 
             set

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace STC.Automation.Office.Excel.Enums
+namespace STC.Automation.Office.Core.Enums
 {
     /// <summary>
     /// Indicates the Office theme color.
     /// </summary>
-    public enum MsoThemeColorIndex
+    public enum ThemeColorIndex
     {
         /// <summary>
         /// Specifies no theme color.
