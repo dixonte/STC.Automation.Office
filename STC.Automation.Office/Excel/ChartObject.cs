@@ -17,6 +17,7 @@ namespace STC.Automation.Office.Excel
     [System.Obsolete("This class has not been fully tested yet and it not guaranteed to work")]
     public class ChartObject : ComWrapper
     {
+        private Chart _chart;
 
         internal ChartObject(object interiorObj)
             : base(interiorObj)
@@ -30,6 +31,34 @@ namespace STC.Automation.Office.Excel
         {
             return new ChartObject(InternalObject.GetType().InvokeMember("Activate", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null));
         }
-        
+
+        /// <summary>
+        /// Returns a Chart object that represents the chart contained in the object. Read-only.
+        /// </summary>
+        /// <returns>A Chart object</returns>
+        public Chart Chart
+        {
+            get
+            {
+                if (_chart == null)
+                {
+                    _chart = new Chart(InternalObject.GetType().InvokeMember("Chart", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                }
+
+                return _chart;
+            }
+        }
+
+        internal override void Dispose(bool disposing)
+        {
+            if (_chart != null)
+            {
+                _chart.Dispose();
+                _chart = null;
+            }
+
+            base.Dispose(disposing);
+        }
+
     }
 }

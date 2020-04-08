@@ -77,6 +77,14 @@ namespace STC.Automation.Office.Excel
             InternalObject.GetType().InvokeMember("Sort", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, ComArguments.Prepare(key1, order1, key2, order2, key3, order3, header));
         }
 
+        /// <summary>
+        /// Fills down from the top cell or cells in the specified range to the bottom of the range. The contents and formatting of the cell or cells in the top row of a range are copied into the rest of the rows in the range.
+        /// </summary>
+        public void FillDown()
+        {
+            InternalObject.GetType().InvokeMember("FillDown", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null);
+        }
+
 
         /// <summary>
         /// Returns a String value that represents the range reference in the language of the macro

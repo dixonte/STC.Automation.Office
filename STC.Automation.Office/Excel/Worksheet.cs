@@ -22,6 +22,7 @@ namespace STC.Automation.Office.Excel
         private PageSetup _pageSetup;
         private ChartObjects _chartobjects;
         private Hyperlinks _hyperlinks;
+        private PivotTables _pivotTables;
 
         internal Worksheet(object worksheetObj)
             : base(worksheetObj)
@@ -80,19 +81,36 @@ namespace STC.Automation.Office.Excel
         /// <summary>
         /// The collection of ChartObject objects for this worksheet
         /// </summary>
-        [Obsolete("Be cautious using this object as it is not documented in the Excel OLE model and should not be relied upon.")]
+        [Obsolete("Be cautious using this object. It was previously not documented in the Excel OLE model. It has since been changed from a Get property to a method invoke.")]
         public ChartObjects ChartObjects
         {
             get
             {
                 if (_chartobjects == null)
                 {
-                    _chartobjects = new ChartObjects(InternalObject.GetType().InvokeMember("ChartObjects", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                    _chartobjects = new ChartObjects(InternalObject.GetType().InvokeMember("ChartObjects", System.Reflection.BindingFlags.InvokeMethod, null, InternalObject, null));
                 }
 
                 return _chartobjects;
             }
                 
+        }
+
+        /// <summary>
+        /// Returns an object that represents either a single PivotTable report (a PivotTable object) or a collection of all the PivotTable reports (a PivotTables object) on a worksheet. Read-only.
+        /// This object is internally cached and does not require manual disposal.
+        /// </summary>
+        public PivotTables PivotTables
+        {
+            get
+            {
+                if (_pivotTables == null)
+                {
+                    _pivotTables = new PivotTables(InternalObject.GetType().InvokeMember("PivotTables", System.Reflection.BindingFlags.GetProperty, null, InternalObject, null));
+                }
+
+                return _pivotTables;
+            }
         }
 
         /// <summary>
@@ -317,6 +335,12 @@ namespace STC.Automation.Office.Excel
             {
                 _hyperlinks.Dispose();
                 _hyperlinks = null;
+            }
+
+            if (_pivotTables != null)
+            {
+                _pivotTables.Dispose();
+                _pivotTables = null;
             }
 
             base.Dispose(disposing);
